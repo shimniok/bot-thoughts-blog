@@ -1,308 +1,347 @@
-/* Content
------------------------------------------------ */
+#navbar-iframe { display:block }
+#navbar {
+height: 0px;
+visibility: hidden;
+display: none;
+}
+/* ---( page defaults )--- */
 body {
-  font: $(body.font);
-  color: $(body.text.color);
-  background: $(body.background);
-  padding: 0 $(content.shadow.spread) $(content.shadow.spread) $(content.shadow.spread);
-  $(body.background.override)
+margin: 0;
+padding: 0;
+font-size: small;
+text-align: center;
+color: #333333;
+background: #c0d981;
 }
-html body $(page.width.selector) {
-  min-width: 0;
-  max-width: 100%;
-  width: $(page.width);
+blockquote {
+margin-top: 0;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 30px;
+padding-top: 10px;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 20px;
+font-size: 88%;
+line-height: 1.5em;
+color: #666;
+background: url(http://www.blogblog.com/tictac/quotes.gif) no-repeat top left;
 }
+blockquote p {
+margin-top: 0;
+}
+abbr, acronym {
+cursor: help;
+font-style: normal;
+border-bottom: 1px dotted;
+}
+code {
+color: #666;
+}
+hr {
+display: none;
+}
+/* unordered list style */
+ul {
+list-style: none;
+margin-left: 10px;
+padding: 0;
+}
+li {
+list-style: none;
+padding-left: 14px;
+margin-bottom: 3px;
+background: url(http://www.blogblog.com/tictac/tictac_orange.gif) no-repeat left 6px;
+}
+/* links */
 a:link {
-  text-decoration:none;
-  color: $(link.color);
+color: #6699cc;
 }
 a:visited {
-  text-decoration:none;
-  color: $(link.visited.color);
+color: #666699;
 }
 a:hover {
-  text-decoration:underline;
-  color: $(link.hover.color);
+color: #693;
 }
-.body-fauxcolumn-outer .fauxcolumn-inner {
-  background: transparent $(body.background.gradient.tile) repeat scroll top left;
-  _background-image: none;
+a:active {
+color: #cc3333;
+text-decoration: none;
 }
-.body-fauxcolumn-outer .cap-top {
-  position: absolute;
-  z-index: 1;
-  height: 400px;
-  width: 100%;
-  background: $(body.background);
-  $(body.background.override)
+/* ---( layout structure )---*/
+#outer-wrapper {
+width: 870px;
+margin: 0px auto 0;
+text-align: left;
+font: normal normal 100% Verdana, sans-serif;
+background: url(http://img213.imageshack.us/img213/5726/bttile.gif) repeat-y;
 }
-.body-fauxcolumn-outer .cap-top .cap-left {
-  width: 100%;
-  background: transparent $(body.background.gradient.cap) repeat-x scroll top left;
-  _background-image: none;
+#content-wrapper {
+margin-left: 42px; /* to avoid the border image */
+width: 765px;
 }
-.content-outer {
-  -moz-box-shadow: 0 0 $(content.shadow.spread) rgba(0, 0, 0, .15);
-  -webkit-box-shadow: 0 0 $(content.shadow.spread.webkit) rgba(0, 0, 0, .15);
-  -goog-ms-box-shadow: 0 0 $(content.shadow.spread.ie) #333333;
-  box-shadow: 0 0 $(content.shadow.spread) rgba(0, 0, 0, .15);
-  margin-bottom: 1px;
+#main {
+float: left;
+width: 470px;
+margin-top: 20px;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 1em;
+line-height: 1.5em;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
 }
-.content-inner {
-  padding: $(content.padding) $(content.padding.horizontal);
+#sidebar {
+float: right;
+width: 260px;
+padding-top: 5px;
+padding-right: 0px;
+padding-bottom: 0;
+padding-left: 0;
+font-size: 85%;
+line-height: 1.4em;
+color: #999999;
+background: url(http://www.blogblog.com/tictac/sidebar_bg.gif) no-repeat left top;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
 }
-$(content.background.color.selector) {
-  background-color: $(content.background.color);
+/* ---( header and site name )--- */
+#header-wrapper {
+margin: 0;
+padding: 0;
+font: normal bold 100% 'Comic Sans MS','TSCu Comic',fantasy;
+background: #c0d981 url(http://img837.imageshack.us/img837/4909/bttopdiv.png) no-repeat left top;
 }
-/* Header
------------------------------------------------ */
-.header-outer {
-  background: $(header.background.color) $(header.background.gradient) repeat-x scroll 0 -400px;
-  _background-image: none;
+#header {
+margin: 0;
+padding-top: 25px;
+padding-right: 100px;
+padding-bottom: 25px;
+padding-left: 160px;
+color: #333333;
+background: url(http://img691.imageshack.us/img691/6493/bttoph1.gif) no-repeat bottom left;
 }
-.Header h1 {
-  font: $(header.font);
-  color: $(header.text.color);
-  text-shadow: $(header.shadow.offset.left) $(header.shadow.offset.top) $(header.shadow.spread) rgba(0, 0, 0, .2);
+#header h1 {
+font-size: 360%;
+padding-left: 40px;
+text-shadow: #81A75B 2px 2px 2px;
 }
-.Header h1 a {
-  color: $(header.text.color);
+#header h1 a {
+text-decoration: none;
+color: #333333;
 }
-.Header .description {
-  font-size: $(description.text.size);
-  color: $(description.text.color);
+#header p {
+color: #333333;
+padding-left: 50px;
 }
-.header-inner .Header .titlewrapper {
-  padding: 22px $(header.padding);
+#header h1 a:hover {
+color: #eee;
 }
-.header-inner .Header .descriptionwrapper {
-  padding: 0 $(header.padding);
+/* ---( main column )--- */
+h2.date-header {
+margin-top: 0;
+padding-left: 14px;
+font-size: 90%;
+color: #ff9933;
+background: url(http://www.blogblog.com/tictac/date_icon.gif) no-repeat left 50%;
 }
-/* Tabs
------------------------------------------------ */
-.tabs-inner .section:first-child {
-  border-top: $(header.bottom.border.size) solid $(tabs.border.color);
-}
-.tabs-inner .section:first-child ul {
-  margin-top: -$(header.border.size);
-  border-top: $(header.border.size) solid $(tabs.border.color);
-  border-left: $(header.border.horizontalsize) solid $(tabs.border.color);
-  border-right: $(header.border.horizontalsize) solid $(tabs.border.color);
-}
-.tabs-inner .widget ul {
-  background: $(tabs.background.color) $(tabs.background.gradient) repeat-x scroll 0 -800px;
-  _background-image: none;
-  border-bottom: $(tabs.border.width) solid $(tabs.border.color);
-  margin-top: $(tabs.margin.top);
-  margin-left: -$(tabs.margin.side);
-  margin-right: -$(tabs.margin.side);
-}
-.tabs-inner .widget li a {
-  display: inline-block;
-  padding: .6em 1em;
-  font: $(tabs.font);
-  color: $(tabs.text.color);
-  border-$startSide: $(tabs.border.width) solid $(content.background.color);
-  border-$endSide: $(tabs.bevel.border.width) solid $(tabs.border.color);
-}
-.tabs-inner .widget li:first-child a {
-  border-$startSide: none;
-}
-.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
-  color: $(tabs.selected.text.color);
-  background-color: $(tabs.selected.background.color);
-  text-decoration: none;
-}
-/* Columns
------------------------------------------------ */
-.main-outer {
-  border-top: $(main.border.width) solid $(body.rule.color);
-}
-.fauxcolumn-left-outer .fauxcolumn-inner {
-  border-right: 1px solid $(body.rule.color);
-}
-.fauxcolumn-right-outer .fauxcolumn-inner {
-  border-left: 1px solid $(body.rule.color);
-}
-/* Headings
------------------------------------------------ */
-h2 {
-  margin: 0 0 1em 0;
-  font: $(widget.title.font);
-  color: $(widget.title.text.color);
-  text-transform: uppercase;
-}
-/* Widgets
------------------------------------------------ */
-.widget .zippy {
-  color: $(widget.alternate.text.color);
-  text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
-}
-.widget .popular-posts ul {
-  list-style: none;
-}
-/* Posts
------------------------------------------------ */
-.date-header span {
-  background-color: $(date.header.background.color);
-  color: $(date.header.color);
-  padding: $(date.header.padding);
-  letter-spacing: $(date.header.letterspacing);
-  margin: $(date.header.margin);
-}
-.main-inner {
-  padding-top: $(main.padding.top);
-  padding-bottom: $(main.padding.bottom);
-}
-.main-inner .column-center-inner {
-  padding: 0 $(main.padding);
-}
-.main-inner .column-center-inner .section {
-  margin: 0 $(main.section.margin);
+.post h3 {
+margin-top: 0;
+font: normal bold 130% 'Lucida Grande','Trebuchet MS';
+letter-spacing: -1px;
+color: #ff6633;
 }
 .post {
-  margin: 0 0 $(post.margin.bottom) 0;
+margin-top: 0;
+margin-right: 0;
+margin-bottom: 1.5em;
+margin-left: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 1.5em;
+padding-left: 14px;
+border-bottom: 1px solid #ddd;
 }
-h3.post-title, .comments h4 {
-  font: $(post.title.font);
-  margin: .75em 0 0;
-}
-.post-body {
-  font-size: 110%;
-  line-height: 1.4;
-  position: relative;
-}
-.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
-.BlogList .item-thumbnail img {
-  padding: $(image.border.small.size);
-  background: $(image.background.color);
-  border: 1px solid $(image.border.color);
-  -moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
-  -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
-}
-.post-body img, .post-body .tr-caption-container {
-  padding: $(image.border.large.size);
-}
-.post-body .tr-caption-container {
-  color: $(image.text.color);
-}
-.post-body .tr-caption-container img {
-  padding: 0;
-  background: transparent;
-  border: none;
-  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
-  box-shadow: 0 0 0 rgba(0, 0, 0, .1);
-}
-.post-header {
-  margin: 0 0 1.5em;
-  line-height: 1.6;
-  font-size: 90%;
+.post h3 a,
+.post h3 a:visited {
+color: #ff6633;
+text-decoration: none;
 }
 .post-footer {
-  margin: 20px -2px 0;
-  padding: 5px 10px;
-  color: $(post.footer.text.color);
-  background-color: $(post.footer.background.color);
-  border-bottom: 1px solid $(post.footer.border.color);
-  line-height: 1.6;
-  font-size: 90%;
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 14px;
+font-size: 88%;
+color: #6699cc;
+background: url(http://www.blogblog.com/tictac/tictac_grey.gif) no-repeat left 8px;
 }
-#comments .comment-author {
-  padding-top: 1.5em;
-  border-top: 1px solid $(body.rule.color);
-  background-position: 0 1.5em;
+.post img {
+padding: 6px;
+border: none;
 }
-#comments .comment-author:first-child {
-  padding-top: 0;
-  border-top: none;
+.feed-links {
+clear: both;
+line-height: 2.5em;
 }
-.avatar-image-container {
-  margin: .2em 0 0;
+#blog-pager-newer-link {
+float: left;
 }
-#comments .avatar-image-container img {
-  border: 1px solid $(image.border.color);
+#blog-pager-older-link {
+float: right;
 }
-/* Accents
----------------------------------------------- */
-.section-columns td.columns-cell {
-  border-$startSide: 1px solid $(body.rule.color);
+#blog-pager {
+text-align: center;
 }
-.blog-pager {
-  background: $(paging.background);
+/* comment styles */
+#comments {
+padding-top: 10px;
+font-size: 85%;
+line-height: 1.5em;
+color: #666;
+background: #eee url(http://www.blogblog.com/tictac/comments_curve.gif) no-repeat top left;
 }
-.blog-pager-older-link, .home-link,
-.blog-pager-newer-link {
-  background-color: $(content.background.color);
-  padding: 5px;
+#comments h4 {
+margin-top: 20px;
+margin-right: 0;
+margin-bottom: 15px;
+margin-left: 0;
+padding-top: 8px;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 40px;
+font-family: "Lucida Grande", "Trebuchet MS";
+font-size: 130%;
+color: #666;
+background: url(http://www.blogblog.com/tictac/bubbles.gif) no-repeat 10px 0;
+height: 29px !important; /* for most browsers */
+height /**/:37px; /* for IE5/Win */
 }
-.footer-outer {
-  border-top: $(footer.bevel) dashed #bbbbbb;
+#comments ul {
+margin-left: 0;
 }
-/* Mobile
------------------------------------------------ */
-body.mobile  {
-  background-size: $(mobile.background.size);
+#comments li {
+background: none;
+padding-left: 0;
 }
-.mobile .body-fauxcolumn-outer {
-  background: $(mobile.background.overlay);
+.comment-body {
+padding-top: 0;
+padding-right: 10px;
+padding-bottom: 0;
+padding-left: 25px;
+background: url(http://www.blogblog.com/tictac/tictac_orange.gif) no-repeat 10px 5px;
 }
-.mobile .body-fauxcolumn-outer .cap-top {
-  background-size: 100% auto;
+.comment-body p {
+margin-bottom: 0;
 }
-.mobile .content-outer {
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
-  box-shadow: 0 0 3px rgba(0, 0, 0, .15);
-  padding: 0 $(content.shadow.spread);
+.comment-author {
+margin-top: 4px;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 0;
+padding-top: 0;
+padding-right: 10px;
+padding-bottom: 0;
+padding-left: 60px;
+color: #999;
+background: url(http://www.blogblog.com/tictac/comment_arrow.gif) no-repeat 44px 2px;
 }
-body.mobile .AdSense {
-  margin: 0 -$(content.shadow.spread);
+.comment-footer {
+border-bottom: 1px solid #ddd;
+padding-bottom: 1em;
 }
-.mobile .tabs-inner .widget ul {
-  margin-left: 0;
-  margin-right: 0;
+.deleted-comment {
+font-style:italic;
+color:gray;
 }
-.mobile .post {
-  margin: 0;
+/* ---( sidebar )--- */
+.sidebar h2 {
+margin-top: 0;
+margin-right: 0;
+margin-bottom: 0;
+margin-left: 0;
+padding-top: 15px;
+padding-right: 0;
+padding-bottom: 15px;
+padding-left: 50px;
+font: normal bold 200% 'Comic Sans MS','TSCu Comic',fantasy;
+color: #666666;
+height: 32px;
+background: url(http://img683.imageshack.us/img683/849/sidebarbullet.gif) no-repeat center left;
+height: 32px !important; /* for most browsers */
+height /**/:57px; /* for IE5/Win */
 }
-.mobile .main-inner .column-center-inner .section {
-  margin: 0;
+.sidebar .widget {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 10px;
+padding-left: 10px;
+border-bottom: 1px solid #ddd;
 }
-.mobile .date-header span {
-  padding: 0.1em 10px;
-  margin: 0 -10px;
+.sidebar li {
+background: url(http://www.blogblog.com/tictac/tictac_green.gif) no-repeat left 5px;
 }
-.mobile h3.post-title {
-  margin: 0;
+.profile-textblock {
+clear: both;
+margin-left: 0;
 }
-.mobile .blog-pager {
-  background: transparent none no-repeat scroll top center;
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+border: 1px solid #ddd;
+padding: 4px;
 }
-.mobile .footer-outer {
-  border-top: none;
+/* ---( footer )--- */
+.clear { /* to fix IE6 padding-top issue */
+clear: both;
 }
-.mobile .main-inner, .mobile .footer-inner {
-  background-color: $(content.background.color);
+#footer-wrapper {
+margin: 0;
+padding-top: 20px;
+padding-right: 0;
+padding-bottom: 0;
+padding-left: 0;
+font-size: 85%;
+color: #ddd;
+background: url(http://img840.imageshack.us/img840/1401/btbottomsill.gif) no-repeat top left;
 }
-.mobile-index-contents {
-  color: $(body.text.color);
+#footer {
+margin: 0;
+padding-top: 20px;
+padding-right: 320px;
+padding-bottom: 50px;
+padding-left: 95px;
+color: #000;
+background: url(http://img683.imageshack.us/img683/5108/btbottomsash.gif) no-repeat bottom left;
 }
-.mobile-link-button {
-  background-color: $(link.color);
+/** Page structure tweaks for layout editor wireframe */
+body#layout #outer-wrapper,
+body#layout #main,
+body#layout #sidebar {
+padding-top: 0;
+margin-top: 0;
 }
-.mobile-link-button a:link, .mobile-link-button a:visited {
-  color: $(mobile.button.color);
+body#layout #outer-wrapper,
+body#layout #content-wrapper {
+width: 740px;
 }
-.mobile .tabs-inner .section:first-child {
-  border-top: none;
+body#layout #sidebar {
+margin-right: 0;
+margin-bottom: 1em;
 }
-.mobile .tabs-inner .PageList .widget-content {
-  background-color: $(tabs.selected.background.color);
-  color: $(tabs.selected.text.color);
-  border-top: $(tabs.border.width) solid $(tabs.border.color);
-  border-bottom: $(tabs.border.width) solid $(tabs.border.color);
+body#layout #header,
+body#layout #footer,
+body#layout #main {
+padding: 0;
 }
-.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
-  border-$startSide: 1px solid $(tabs.border.color);
+body#layout #content-wrapper {
+margin: 0px;
 }
