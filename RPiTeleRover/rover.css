@@ -1,0 +1,37 @@
+#streamimage {
+#	width:520px; height: 390px;
+	width: 400px; height: 300px;
+}
+
+td.button {
+	#display: block;
+	#margin: 5px 5px 5px 5px;
+	width: 80px;
+	height: 80px;
+	font-family: Arial;
+	font-size: 20pt;
+	font-weight: bold;
+	color: black;
+	background-color: grey;
+}
+
+#td.button:hover {
+	#background-color: green;
+#}
+
+td.button:active {
+	background-color: red;
+}
+
+
+html {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
