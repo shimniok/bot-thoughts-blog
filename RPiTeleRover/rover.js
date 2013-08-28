@@ -38,64 +38,64 @@ webiopi().ready(function() {
   webiopi().setFunction(21, "PWM"); // b phase
   webiopi().setFunction(22, "PWM"); // b enable
 
-  function iUnbind() {
-    $("#F").unbind("mousedown mouseup mouseenter mouseleave");
-    $("#R").unbind("mousedown mouseup mouseenter mouseleave");
-    $("#SL").unbind("mousedown mouseup mouseenter mouseleave");
-    $("#SR").unbind("mousedown mouseup mouseenter mouseleave");
-    $("#S").unbind("mousedown mouseup mouseenter mouseleave");
-  }
+  // Note that on iDevices, touchstart/touchend come first and
+  // mousedown/mouseup are also fired, so you have to disable
+  // them from within touchstart/touchend
 
-
-  // Disable double-click text highlighting
-  $(function() {
-    $.extend($.fn.disableTextSelect = function() {
-      return this.each(function() {
-        if($.browser.mozilla) {//Firefox
-          $(this).css('MozUserSelect','none');
-        } else if($.browser.msie) {//IE
-          $(this).bind('selectstart',function(){return false;});
-        } else {//Opera, etc.
-          $(this).mousedown(function(){return false;});
-        }
-      });
-    });
-    $('.button').disableTextSelect();//No text selection on elements with a class of 'button'
-  });
-
-  $("#F").bind("touchstart mousedown", fwd);
+  $("#F").bind("mousedown", fwd);
   $("#F").bind("mouseup", stop);
+  $("#F").bind("touchstart", function() {
+    fwd();
+    $(this).unbind("mousedown");
+  });
   $("#F").bind("touchend", function() {
     stop();
-    iUnbind();
+    $(this).unbind("mousedown");
   });
 
-  $("#R").bind("touchstart mousedown", rev);
+  $("#R").bind("mousedown", rev);
   $("#R").bind("mouseup", stop);
+  $("#R").bind("touchstart", function() {
+    rev();
+    $(this).unbind("mousedown");
+  });
   $("#R").bind("touchend", function() {
     stop();
-    iUnbind();
+    $(this).unbind("mouseup");
   });
 
-  $("#SR").bind("touchstart mousedown", spinRight);
+  $("#SR").bind("mousedown", spinRight);
+  $("#SR").bind("touchstart", function() {
+    spinRight();
+    $(this).unbind("mousedown");
+  });
   $("#SR").bind("mouseup", stop);
   $("#SR").bind("touchend", function() {
     stop();
-    iUnbind();
+    $(this).unbind("mouseup");
   });
 
-  $("#SL").bind("touchstart mousedown", spinLeft);
+  $("#SL").bind("mousedown", spinLeft);
   $("#SL").bind("mouseup", stop);
+  $("#SL").bind("touchstart", function() {
+    spinLeft();
+    $(this).unbind("mousedown");
+  });
   $("#SL").bind("touchend", function() {
     stop();
-    iUnbind();
+    $(this).unbind("mouseup");
   });
 
-  $("#ST").bind("touchstart mousedown", stop);
   $("#ST").bind("mouseup", stop);
+  $("#ST").bind("touchstart mousedown", stop);
+
+  $("#ST").bind("touchstart mousedown", function() {
+    stop();
+    $(this).unbind("mousedown");
+  });
   $("#ST").bind("touchend", function() {
     stop();
-    iUnbind();
+    $(this).unbind("mouseup");
   });
 
 });
