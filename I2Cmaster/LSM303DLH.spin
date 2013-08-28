@@ -33,7 +33,7 @@ OBJ
 
 PUB Main | ack, x, y, z, i, v[6]
 
-  Wire.init(16, 17, Wire.NORMAL)
+  Wire.init(19, 18, Wire.NORMAL)
   Serial.start(31, 30, 0, 9600)
 
   '' Initialize Accelerometer
