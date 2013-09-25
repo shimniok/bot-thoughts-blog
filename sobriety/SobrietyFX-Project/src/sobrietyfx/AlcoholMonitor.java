@@ -44,13 +44,13 @@ class AlcoholMonitor {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
-                Logger.getLogger(HumidityMonitor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AlcoholMonitor.class.getName()).log(Level.SEVERE, null, ex);
             }
             String sAlcohol = target.request().get(String.class);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
-                Logger.getLogger(HumidityMonitor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AlcoholMonitor.class.getName()).log(Level.SEVERE, null, ex);
             }
             final float alcohol = new Float(sAlcohol);
             Platform.runLater(new Runnable() {

@@ -59,7 +59,7 @@ class DistanceMonitor {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
-                Logger.getLogger(TemperatureMonitor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DistanceMonitor.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             final float distanceOut = new Float(sDistance);
