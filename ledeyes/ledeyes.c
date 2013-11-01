@@ -51,19 +51,10 @@ int main()
 	init_blink();
 	slow_clock();
 
-	/*
-	for (i=0; i < 3; i++) {
-		eyes(ON);
-		delay(100);
-		eyes(OFF);
-		delay(100);
-	}
-	*/
-
 	while (1) {
-		blink(4);
+		blink(3+(uint8_t)(rand()>>31)); // 3 + up to 3 blinks
 		eyes(OFF);
-		sleep(3+(uint8_t)(rand()>>30));
+		sleep(3+(uint8_t)(rand()>>30)); // 3 +  up to 7 seconds
 	}
 }
 
@@ -83,24 +74,23 @@ void blink(uint8_t count)
 	for (i = 0; i < count; i++) {
 		// off for 400ms
 		eyes(OFF);
-		delay(100);
+		delay(50+(uint8_t)(rand()>>24)); // 50 + up to 256ms
 		// on for 3-4s
 		eyes(ON);
-		delay(3000+(uint16_t)(rand()>>21); // 3000 + up to 2048ms
+		delay(1000+(uint16_t)(rand()>>20)); // 3000 + up to 4096ms
 	}
 }
-
 
 void eyes(uint8_t status)
 {
 	if (status) {
 		PORTB |= (1<<RIGHTEYE);
-		delay(10);
+		delay(10+(uint8_t)(rand()>>27)); // delay between eyes 10 + up to 32
 		PORTB |= (1<<LEFTEYE);
 	} else {
-		PORTB = (1<<LEFTEYE);
-		delay(10);
-		PORTB = (1<<RIGHTEYE);
+		PORTB &= ~(1<<RIGHTEYE);
+		delay(10+(uint8_t)(rand()>>27)); // delay between eyes 10 + up to 32
+		PORTB &= ~(1<<LEFTEYE);
 	}
 }
 
@@ -131,15 +121,6 @@ void sleep(uint8_t s)
 		set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 		wdt_reset();
 		sleep_mode();
-		/*
-		for (i=0; i < sleep_interval; i++) {
-			eyes(ON);
-			delay(50);
-			eyes(OFF);
-			delay(50);
-		}
-		delay(200);
-		*/
 	}
 }
 
