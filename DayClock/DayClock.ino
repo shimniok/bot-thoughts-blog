@@ -145,7 +145,7 @@ byte font[28*MAXROW] = {
                           B11011111,
                           B11000011,
                           B11000111,
-                          B11001100,
+                          B11001110,
                           B11011000,
                           B11011111,
                           B11011111, 
@@ -369,7 +369,11 @@ void drawClock(int hour, int minute, boolean showColon) {
   if (minute < 0 || minute > 59 || hour < 0 || hour > 23) 
     return;
     
-  if (hour > 12) hour -= 12;
+  if (hour > 12) // PM in 24-hour time
+    hour -= 12;
+  
+  if (hour == 0) // midnight
+    hour = 12;
 
   byte *h0 = &font[MAXROW*hour];
   byte *m1 = &font[MAXROW*(minute/10)];
