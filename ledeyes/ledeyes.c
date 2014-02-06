@@ -60,6 +60,9 @@ int main()
 
 	init_wdt();
 	init_blink();
+
+	delay(2000); // this may permit the chip to be programmed at higher ISP freq
+
 	slow_clock();
 
 	while (1) {
