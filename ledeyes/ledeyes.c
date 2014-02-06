@@ -9,6 +9,17 @@
  *
  * Sets itself to run at 150kHz
  *
+ *  *** *** WARNING *** ***
+ *
+ *  If clock speed is too low you will have trouble programming the chip.
+ *  The solution is, use a programmer for which you can set the ISP clock
+ *  frequency. For example, in AVR Studio 4, you can set the ISP Frequency
+ *  for both JTAG ICE MkII and AVR Dragon, presumably others. I'm not 
+ *  familiar with how to do this in AVR Studio 6. With avrdude, the -B
+ *  and -i flags may be what you need.
+ *
+ *  *** *** WARNING *** ***
+ *
  *  Created on: Oct 30, 2013
  *      Author: mes
  */
@@ -112,10 +123,11 @@ void delay(uint16_t ms) {
 }
 
 
+// Puts MCU to sleep for specified number of seconds using
+// WDT to wake every second and track number of seconds
 void sleep(uint8_t s)
 {
 	uint8_t i;
-   	//wdt_enable(WDTO_1S); 
 	sleep_interval = 0;
 	while (sleep_interval < s) {
 		set_sleep_mode(SLEEP_MODE_PWR_DOWN);
@@ -132,10 +144,10 @@ void init_wdt()
 	cli();
 	// Start timed sequence
 	// Set Watchdog Change Enable bit
-	WDTCR |= (1<<WDCE);
+	_WD_CONTROL_REG |= (1<<WDCE);
 	// Set new prescaler (1 sec), unset reset enable
 	// enable WDT interrupt
-	WDTCR = (1<<WDTIE)|(1<<WDP2)|(1<<WDP1);
+	_WD_CONTROL_REG = (1<<WDTIE)|(1<<WDP2)|(1<<WDP1);
 	sei();
 }
 
@@ -153,8 +165,9 @@ ISR(WDT_vect)
 {
 	sleep_interval++;
 	wdt_reset();
-	WDTCR |= (1<<WDCE);
-	WDTCR |= (1<<WDTIE);		// re-enable WDT interrupt
-	MCUSR &= ~(1<<WDRF);		// I think we may have to do this on t13a
+	// Re-enable WDT interrupt. Normally we wouldn't do that here,
+	// But we're using this routine purely as a timeout; 
+	// WDT is never used for reset
+	_WD_CONTROL_REG |= (1<<WDTIE);		
 	return;
 }
