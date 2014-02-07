@@ -44,6 +44,7 @@
 uint32_t lfsr=0xdeadbeef;
 volatile uint8_t sleep_interval=0;
 
+void startup_delay();
 void init_blink();
 void init_wdt();
 //void disable_wdt();
@@ -58,11 +59,10 @@ int main()
 {
 	uint8_t i;
 
+	startup_delay(); // ensures you can program before clock slows
+
 	init_wdt();
 	init_blink();
-
-	delay(2000); // this may permit the chip to be programmed at higher ISP freq
-
 	slow_clock();
 
 	while (1) {
@@ -117,6 +117,9 @@ uint32_t rand()
 	return lfsr;
 }
 
+void startup_delay() {
+	delay(64800); // Delay 1000 ms at 9.6MHz instead of 150kHz
+}
 
 void delay(uint16_t ms) {
 	while(ms) {
