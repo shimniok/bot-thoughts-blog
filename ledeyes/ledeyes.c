@@ -44,7 +44,6 @@
 uint32_t lfsr=0xdeadbeef;
 volatile uint8_t sleep_interval=0;
 
-void startup_delay();
 void init_blink();
 void init_wdt();
 //void disable_wdt();
@@ -59,7 +58,7 @@ int main()
 {
 	uint8_t i;
 
-	startup_delay(); // ensures you can program before clock slows
+	delay(64000); // delay before clock slows down, 1000ms * 64
 
 	init_wdt();
 	init_blink();
@@ -115,10 +114,6 @@ uint32_t rand()
 	// Galois LFSR: taps: 32 31 29 1; characteristic polynomial: x^32 + x^31 + x^29 + x + 1 
 	lfsr = (lfsr >> 1) ^ (-(lfsr & 1u) & 0xD0000001u);
 	return lfsr;
-}
-
-void startup_delay() {
-	delay(64800); // Delay 1000 ms at 9.6MHz instead of 150kHz
 }
 
 void delay(uint16_t ms) {
