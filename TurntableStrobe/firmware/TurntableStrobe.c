@@ -9,7 +9,7 @@
 // ATtiny25 family
 
 // We programmatically keep track of overflow time. Yes, I know hardware can do this.
-// I'll do that in another revision. I kinda forgot to tie the LED to OC0A or OC0B :(
+// But it's not like the microcontroller has much else to do.
 
 // Assuming 12MHz clock
 // need to divide by 200000 to get 60Hz
@@ -18,8 +18,7 @@
 #define PERIOD 125
 #define ONTIME 50
 
-// Stupid me, I put the LED on PB2. Should've put on ANY other pin PB0-PB4. >:(
-#define LED  PB2
+#define LED  PB2	// I should probably put one of these on OC1A ...
 #define PUMP PB0
 
 int main() {
