@@ -8507,8 +8507,8 @@ LETTER landscape</description>
 <part name="FRAME1" library="bt" deviceset="LETTER_L" device=""/>
 <part name="C2" library="rcl" deviceset="C-US" device="C0603" value="10uF"/>
 <part name="C3" library="rcl" deviceset="C-US" device="C0603" value="10uF"/>
-<part name="D1" library="bt_diode" deviceset="DIODE" device="_SOD323"/>
-<part name="D2" library="bt_diode" deviceset="DIODE" device="_SOD323"/>
+<part name="D1" library="bt_diode" deviceset="DIODE" device="_SOD323" value="1N4148"/>
+<part name="D2" library="bt_diode" deviceset="DIODE" device="_SOD323" value="1N4148"/>
 <part name="GND4" library="mes" deviceset="GND" device=""/>
 <part name="U$4" library="mes" deviceset="VCC" device="" value=""/>
 <part name="R3" library="rcl" deviceset="R-US_" device="R0603" value="100"/>
