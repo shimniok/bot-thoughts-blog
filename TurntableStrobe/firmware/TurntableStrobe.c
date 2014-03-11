@@ -24,6 +24,7 @@
 
 int main() {
 	DDRB |= (1<<LED)|(1<<PB1);
+	PORTB &= ~(1<<LED);
 	TCCR1 |= (1<<CTC1)|(1<<COM1A0)|(1<<CS12)|(1<<CS11)|(1<<CS10); // /64
 	OCR1C = 25;
 	TIMSK |= (1<<OCIE1A);
@@ -32,8 +33,10 @@ int main() {
 	// Run the charge pump, timing doesn't have to be super accurate
 	DDRB |= (1<<PUMP);
 	while (1) {
-		PINB |= (1<<PUMP);
-		_delay_us(10);
+		PORTB |= (1<<PUMP);
+		_delay_us(1);
+		PORTB &= ~(1<<PUMP);
+		_delay_us(1);
 	}
 }
 
@@ -41,13 +44,8 @@ int main() {
 ISR(TIM1_COMPA_vect) {
 	static int count = 0;
 	++count;
-	//PINB |= (1<<LED);
 	if (count > 4) {
 		count = 0;
 		PINB |= (1<<LED);
-	}/* else if (timer_overflow_count < ONTIME) {
-		PORTB &= ~(1<<LED);
-	} else {
-	   	PORTB |=  (1<<LED);
-	}*/
+	}
 }
