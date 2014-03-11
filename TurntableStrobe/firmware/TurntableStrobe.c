@@ -32,9 +32,7 @@ int main() {
 	// Run the charge pump, timing doesn't have to be super accurate
 	DDRB |= (1<<PUMP);
 	while (1) {
-		PORTB |= (1<<PUMP);
-		_delay_us(1);
-		PORTB &= ~(1<<PUMP);
+		PINB |= (1<<PUMP); // Toggle charge pump line
 		_delay_us(1);
 	}
 }
@@ -45,6 +43,6 @@ ISR(TIM1_COMPA_vect) {
 	++count;
 	if (count > 4) {
 		count = 0;
-		PINB |= (1<<LED);
+		PINB |= (1<<LED); // Toggle LED line
 	}
 }
