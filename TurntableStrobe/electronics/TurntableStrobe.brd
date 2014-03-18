@@ -115,7 +115,7 @@
 <wire x1="2.54" y1="0" x2="22.606" y2="0" width="0" layer="20"/>
 <wire x1="22.606" y1="0" x2="25.146" y2="2.54" width="0" layer="20" curve="90"/>
 <text x="15.827" y="16.051" size="1.016" layer="26" font="vector" rot="MR0">bot-thoughts.com</text>
-<text x="7.112" y="3.048" size="1.016" layer="25" font="vector" ratio="10">Strobe</text>
+<text x="7.112" y="3.048" size="1.27" layer="25" font="vector" ratio="10">Strobe</text>
 <wire x1="2.032" y1="12.573" x2="0" y2="12.573" width="0" layer="20"/>
 <wire x1="2.032" y1="12.573" x2="2.032" y2="5.588" width="0" layer="20"/>
 <wire x1="2.032" y1="5.588" x2="0" y2="5.588" width="0" layer="20"/>
@@ -154,7 +154,7 @@
 <vertex x="5.540375" y="3.81" curve="247.500114"/>
 <vertex x="4.552621875" y="3.150003125"/>
 </polygon>
-<text x="2.286" y="13.462" size="1.27" layer="21" font="vector" ratio="10">R0.2</text>
+<text x="2.286" y="13.462" size="1.27" layer="25" font="vector" ratio="10">R0.2</text>
 <circle x="3.683" y="2.794" radius="1.524" width="0.254" layer="21"/>
 <polygon width="0.254" layer="21">
 <vertex x="3.683" y="3.302" curve="-90"/>
@@ -175,8 +175,7 @@
 <vertex x="6.223" y="3.556"/>
 <vertex x="5.715" y="3.556"/>
 </polygon>
-<text x="7.112" y="1.524" size="1.016" layer="25" font="vector" ratio="10">60.0Hz</text>
-<text x="2.286" y="13.462" size="1.27" layer="121" font="vector" ratio="16">R0.2</text>
+<text x="7.112" y="1.397" size="1.27" layer="25" font="vector" ratio="10">60.0Hz</text>
 <wire x1="5.969" y1="3.937" x2="5.969" y2="2.159" width="0.254" layer="121"/>
 <wire x1="5.789396875" y1="1.725396875" x2="5.969" y2="2.159" width="0.254" layer="121" curve="45"/>
 <wire x1="5.789396875" y1="1.725396875" x2="5.461" y2="1.397" width="0.4064" layer="121"/>
@@ -287,8 +286,9 @@
 <vertex x="5.540375" y="3.81" curve="247.500114"/>
 <vertex x="4.55261875" y="3.15000625"/>
 </polygon>
-<text x="7.112" y="3.048" size="1.016" layer="121" font="vector" ratio="20">Strobe</text>
-<text x="7.112" y="1.524" size="1.016" layer="121" font="vector" ratio="20">60.0Hz</text>
+<text x="7.112" y="3.048" size="1.27" layer="121" font="vector" ratio="16">Strobe</text>
+<text x="2.286" y="13.462" size="1.27" layer="121" font="vector" ratio="16">R0.2</text>
+<text x="7.112" y="1.397" size="1.27" layer="121" font="vector" ratio="16">60.0Hz</text>
 <text x="10.668" y="4.699" size="0.8128" layer="121" font="vector" ratio="25">C1</text>
 <text x="16.002" y="14.224" size="0.8128" layer="121" font="vector" ratio="25">C2</text>
 <text x="7.366" y="14.224" size="0.8128" layer="121" font="vector" ratio="25">C3</text>
@@ -1828,15 +1828,15 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="PB5">
 <contactref element="J1" pad="5"/>
-<via x="12.573" y="3.81" extent="1-16" drill="0.3302"/>
+<via x="12.192" y="3.81" extent="1-16" drill="0.3302"/>
 <wire x1="6.35" y1="7.62" x2="6.35" y2="5.461" width="0.254" layer="16"/>
 <wire x1="6.35" y1="5.461" x2="8.001" y2="3.81" width="0.254" layer="16"/>
-<wire x1="8.001" y1="3.81" x2="12.573" y2="3.81" width="0.254" layer="16"/>
+<wire x1="8.001" y1="3.81" x2="12.192" y2="3.81" width="0.254" layer="16"/>
 <contactref element="IC1" pad="1"/>
 <contactref element="R2" pad="2"/>
 <wire x1="17.741" y1="5.08" x2="17.653" y2="4.953" width="0.254" layer="1"/>
 <wire x1="17.653" y1="4.953" x2="16.51" y2="3.81" width="0.254" layer="1"/>
-<wire x1="16.51" y1="3.81" x2="12.573" y2="3.81" width="0.254" layer="1"/>
+<wire x1="16.51" y1="3.81" x2="12.192" y2="3.81" width="0.254" layer="1"/>
 <wire x1="17.741" y1="5.08" x2="17.741" y2="6.565" width="0.254" layer="1"/>
 <wire x1="17.741" y1="6.565" x2="18.161" y2="6.985" width="0.254" layer="1"/>
 <wire x1="18.161" y1="6.985" x2="19.383" y2="6.985" width="0.254" layer="1"/>
