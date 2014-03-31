@@ -22,17 +22,16 @@
 // I should probably put one of these on OC1A ...
 #define LED  PB2 
 #define PUMP PB0
-#define INTERVAL 4
+#define ONTIME 60
+#define PERIOD 249
 
 int main() {
 	DDRB |= (1<<LED)|(1<<PB1);
-	PORTB &= ~(1<<LED);
+	PORTB &= ~(1<<LED); 
 
-	// Assuming 12MHz clock, need to divide by 200000 to get 60Hz
-	// 12MHz/64 = 187500 / 25 = 7500 / 125 = 60
-	TCCR1 |= (1<<CTC1)|(1<<COM1A0)|(1<<CS12)|(1<<CS11)|(1<<CS10); // /64
-	OCR1C = 25;
-	TIMSK |= (1<<OCIE1A);
+	TCCR1 |= (1<<PWM1A)|(1<<CTC1)|(1<<CS11)|(1<<CS10); // 4MHz
+	OCR1C = 199;
+	TIMSK |= (1<<TOIE1);
 	sei();
 	
 	// Run the charge pump, timing doesn't have to be super accurate
@@ -43,12 +42,16 @@ int main() {
 	}
 }
 
+ISR(TIM1_OVF_vect) {
+	static unsigned char count = 0;
+	count++;
 
-ISR(TIM1_COMPA_vect) {
-	static int count = 0;
-	++count;
-	if (count > INTERVAL) {
+	if (count > PERIOD) {
 		count = 0;
-		PINB |= (1<<LED); // Toggle LED line
+	} else if (count > ONTIME) {
+		PORTB |= (1<<LED);
+	} else {
+		PORTB &= ~(1<<LED); // Toggle LED line
 	}
+
 }
