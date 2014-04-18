@@ -1,22 +1,42 @@
 // Resize buttons and image
 //
 function doResize() {
-  var ww = $(window).width();
-  var wh = $(window).height();
+  var ww;
+  var wh;
+  var margin = 60;
+  var ratio = 320/240;
   var winportion = 0.6; // portion of vertical space taken up by image
-  var tblportion = (1-winportion) * 0.9 * wh / 3;
 
-  $("table#buttontable td").width( tblportion );
-  $("table#buttontable td").height( tblportion );
+  if (window.orientation == 90 || window.orientation == -90) {
+    ww = $(window).height();
+    wh = $(window).width()-margin;
+  } else {
+    ww = $(document).width();
+    wh = $(document).height()-margin;
+  }
 
-  $("img#imagestream").attr('height', winportion * wh);
-  // need to check to see if image is wider than window, ie, winportion * wh results in width > ww
+  var iw = ww - margin*2;
+  var ih = wh*winportion - margin;
+
+  // Resize Image Stream
+  if (ih * ratio > iw) {
+    $("img#imagestream").height(iw/ratio);
+    $("img#imagestream").width(iw);
+  } else {
+    $("img#imagestream").width(ih*ratio);
+    $("img#imagestream").height(ih);
+  }
+
+  // Resize Table
+  $("table.button").width(wh - ih);
+  $("table.button").height(wh - ih);
 }
 
 
 $(window).load(function() {
   doResize();
   $(window).on('resize', doResize);
+  $(window).on('orientationchange', doResize);
 });
 
 
