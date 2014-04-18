@@ -15,7 +15,7 @@
 <body>
 	<div align="center">
 
-        <img id="streamimage" src="http://192.168.0.4:8080/?action=stream"/>
+        <img id="streamimage" src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream"/>
 
 <!--
 	<table>

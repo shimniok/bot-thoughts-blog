@@ -32,18 +32,22 @@ webiopi().ready(function() {
   right = $( "#rightbuttons" );
 
   webiopi().setFunction(11, "OUT"); // mode
-  webiopi().setValue(11, 0);	  // IN-IN mode
-  webiopi().setFunction(9, "PWM");  // a phase
-  webiopi().setFunction(10, "PWM"); // a enable
-  webiopi().setFunction(21, "PWM"); // b phase
-  webiopi().setFunction(22, "PWM"); // b enable
+  webiopi().digitalWrite(11, 0);    // IN-IN mode
+  webiopi().setFunction(9, "OUT");  // a phase
+  webiopi().setFunction(10, "OUT"); // a enable
+  webiopi().setFunction(21, "OUT"); // b phase
+  webiopi().setFunction(22, "OUT"); // b enable
 
   // Note that on iDevices, touchstart/touchend come first and
   // mousedown/mouseup are also fired, so you have to disable
   // them from within touchstart/touchend
 
-  $("#F").bind("mousedown", fwd);
-  $("#F").bind("mouseup", stop);
+  $("#F").bind("mousedown", function() {
+    fwd();
+  });
+  $("#F").bind("mouseup", function() {
+    stop();
+  });
   $("#F").bind("touchstart", function() {
     fwd();
     $(this).unbind("mousedown");
@@ -105,77 +109,46 @@ function sign(x) {
 }
 
 
-	function fwd() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 0);     // AIN1
-                webiopi().pulseRatio(10, 0.7);  // AIN2
-                webiopi().pulseRatio(21, 0);    // BIN1
-                webiopi().pulseRatio(22, 0.5);  // BIN2
-	}
+function fwd() {
+  webiopi().digitalWrite(11, 0);
 
-	function fwdLeft() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 1.0);	// AIN1
-                webiopi().pulseRatio(10, 1.0);	// AIN2
-                webiopi().pulseRatio(21, 0);	// BIN1
-                webiopi().pulseRatio(22, 1.0);	// BIN2
-	}
+  webiopi().digitalWrite(9, 0);  // AIN1
+  webiopi().digitalWrite(21, 0); // BIN1
+  webiopi().digitalWrite(10, 1); // AIN2
+  webiopi().digitalWrite(22, 1); // BIN2
+}
 
-	function fwdRight() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 0);	// AIN1
-                webiopi().pulseRatio(10, 1.0);	// AIN2
-                webiopi().pulseRatio(21, 1.0);	// BIN1
-                webiopi().pulseRatio(22, 1.0);	// BIN2
-	}
+function rev() {
+  webiopi().digitalWrite(11, 0);
+  webiopi().digitalWrite(9, 1);	 // AIN1
+  webiopi().digitalWrite(10, 0); // AIN2
+  webiopi().digitalWrite(21, 1); // BIN1
+  webiopi().digitalWrite(22, 0); // BIN2
+}
 
-	function rev() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 0.6);	// AIN1
-                webiopi().pulseRatio(10, 0);	// AIN2
-                webiopi().pulseRatio(21, 0.6);	// BIN1
-                webiopi().pulseRatio(22, 0);	// BIN2
-	}
+function spinLeft() {
+  webiopi().digitalWrite(11, 0);
+  webiopi().digitalWrite(9, 1);	 // AIN1
+  webiopi().digitalWrite(10, 0); // AIN2
+  webiopi().digitalWrite(21, 0); // BIN1
+  webiopi().digitalWrite(22, 1); // BIN2
+}
 
-	function revRight() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 1.0);	// AIN1
-                webiopi().pulseRatio(10, 1.0);	// AIN2
-                webiopi().pulseRatio(21, 0.6);	// BIN1
-                webiopi().pulseRatio(22, 0);	// BIN2
-	}
+function spinRight() {
+  webiopi().digitalWrite(11, 0);
+  webiopi().digitalWrite(9, 0);	 // AIN2
+  webiopi().digitalWrite(10, 1); // AIN2
+  webiopi().digitalWrite(21, 1); // BIN2
+  webiopi().digitalWrite(22, 0); // BIN2
+}
 
-	function revLeft() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 0.6);	// AIN1
-                webiopi().pulseRatio(10, 0);	// AIN2
-                webiopi().pulseRatio(21, 1.0);	// BIN1
-                webiopi().pulseRatio(22, 1.0);	// BIN2
-	}
-
-	function spinLeft() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 0.6);	// AIN1
-                webiopi().pulseRatio(10, 0);	// AIN2
-                webiopi().pulseRatio(21, 0);	// BIN1
-                webiopi().pulseRatio(22, 0.6);	// BIN2
-	}
-
-	function spinRight() {
-		webiopi().setValue(11, 0);
-		webiopi().pulseRatio(9, 0.0);	// AIN2
-		webiopi().pulseRatio(10, 0.6);	// AIN2
-		webiopi().pulseRatio(21, 0.6);	// BIN2
-		webiopi().pulseRatio(22, 0);	// BIN2
-	}
-
-	function stop() {
-                webiopi().setValue(11, 0);
-                webiopi().pulseRatio(9, 1.0);	// AIN1
-                webiopi().pulseRatio(10, 1.0);	// AIN2
-                webiopi().pulseRatio(21, 1.0);	// BIN1
-                webiopi().pulseRatio(22, 1.0);	// BIN2
-	}
+function stop() {
+  webiopi().digitalWrite(11, 0);
+  webiopi().digitalWrite(9, 0);	 // AIN1
+  webiopi().digitalWrite(10, 0); // AIN2
+  webiopi().digitalWrite(21, 0); // BIN1
+  webiopi().digitalWrite(22, 0); // BIN2
+}
 
 
 
