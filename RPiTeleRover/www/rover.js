@@ -1,21 +1,18 @@
+// Resize buttons and image
+//
 function doResize() {
-  var iw = $("img#streamimage").width();
-  var ww = $(window).width() * 0.8;
+  var ww = $(window).width();
+  var wh = $(window).height();
+  var winportion = 0.6; // portion of vertical space taken up by image
+  var tblportion = (1-winportion) * 0.9 * wh / 3;
 
-  if ( ww < 600 ) {
-    $("img#streamimage").width( ww );
-  } else {
-    $("img#streamimage").width( 600 );
-  }
-  $("img#streamimage").height(  $("img#streamimage").width() * 0.75 );
+  $("table#buttontable td").width( tblportion );
+  $("table#buttontable td").height( tblportion );
 
-  if ( ww < 300 ) {
-    $("table#buttontable td").width( ww / 3 );
-  } else {
-    $("table#buttontable td").width( 100 );
-  }
-  $("table#buttontable td").height( $("table#buttontable td").width() );
+  $("img#imagestream").attr('height', winportion * wh);
+  // need to check to see if image is wider than window, ie, winportion * wh results in width > ww
 }
+
 
 $(window).load(function() {
   doResize();
@@ -23,8 +20,12 @@ $(window).load(function() {
 });
 
 
-webiopi().ready(function() {
+$(document).ready(function() {
+  $("img#imagestream").attr('src', 'http://' + window.location.hostname + ':8080/?action=stream');
+});
 
+
+webiopi().ready(function() {
   var left, right, top, button;
 
   top = $( "#topbuttons" );
