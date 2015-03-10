@@ -312,8 +312,9 @@ void setup() {
   }
   
   // Turn on RTC
-  DDRC |= (1<<PC3)|(1<<PC2);
-  PORTC |= (1<<PC3);
+  pinMode(16, OUTPUT);
+  pinMode(17, OUTPUT);
+  digitalWrite(17, HIGH);
 
   Serial.begin(9600);
   Serial.println("DayClock v1.0 Michael Shimniok www.bot-thoughts.com");
@@ -449,12 +450,12 @@ void flushInput(void)
     } while (Serial.available() > 0);
 }
 
-//Read command from the Arduino serial monitor to set the RTC.
-//Case-sensitive and must be entered exactly as (24-hour clock):
+// Read command from the Arduino serial monitor to set the RTC.
+// Case-sensitive and must be entered exactly as (24-hour clock):
 //  Set yyyy-mm-dd hh:mm:ss
 void readCommand()
 {
-    char cmd[24] = "Set yyyy-mm-dd hh:mm:ss";
+    char cmd[24] = "set yyyy-mm-dd hh:mm:ss";
     static int i;
     tmElements_t tmSet;
     time_t tSet;
@@ -473,7 +474,7 @@ void readCommand()
         }
         cmd[i] = 0;                              //put in string terminator
 
-        if (strncmp(cmd, "Set ", 4) == 0) {
+        if (strncmp(cmd, "set ", 4) == 0) {
             tmSet.Year = 1000 * (cmd[4] - '0') + 100 * (cmd[5] - '0') + 10 * (cmd[6] - '0') + cmd[7] - '0' - 1970;
             tmSet.Month = 10 * (cmd[9] - '0') + cmd[10] - '0';
             tmSet.Day = 10 * (cmd[12] - '0') + cmd[13] - '0';
@@ -482,16 +483,13 @@ void readCommand()
             tmSet.Second = 10 * (cmd[21] - '0') + cmd[22] - '0';
             tSet = makeTime(tmSet);		 //convert to time_t
             // Correct for DST
-            if (isDST(tSet)) {
-              tmSet.Hour -= 1;
-              tSet = makeTime(tmSet);		 //convert to time_t
-            }
+            if (isDST(tSet)) tSet -= 3600;       // subtract an hour
             setTime(tSet);			 //set the system time
-            RTC.set(now());		         //set the rtc
+            RTC.set(tSet);		         //set the rtc            
             Serial.println("RTC set!");
             flushInput();                        //discard any extraneous trailing characters
-        }
-        else {
+            printTime(tSet);
+        } else {
             Serial.print("Unknown: ");
             Serial.println(cmd);
         }
@@ -514,8 +512,7 @@ void printI00(int val, char delim)
 void printTime(time_t t)
 {
     int h = hour(t);
-    if (isDST(t))
-      h += 1;
+
     printI00(h, ':');
     printI00(minute(t), ':');
     printI00(second(t), ' ');
@@ -524,24 +521,26 @@ void printTime(time_t t)
     printI00(day(t), ' ');
     Serial.print(monthShortStr(month(t)));
     Serial.print(' ');
-    Serial.println(year(t));
+    Serial.print(year(t));
+    Serial.print(' ');
+    if (isDST(t)) Serial.print("DST");
+    Serial.println();
 }
 
 void loop() {
   time_t time = now();
+
+  if (isDST(time)) time += 3600; // add one hour
+
   int h = hour(time);
   int m = minute(time);
-
-  // Correct time for DST
-  if (isDST(time)) {
-    h += 1;
-  }
 
   readCommand();
     
   if (lastMin != minute(time)) {
+    // Correct time for DST
     printTime(time);   
-    Serial.println("To set the time: Set yyyy-mm-dd hh:mm:ss");
+    Serial.println("To set the time: set yyyy-mm-dd hh:mm:ss");
     lastMin = minute(time);
   }
 
