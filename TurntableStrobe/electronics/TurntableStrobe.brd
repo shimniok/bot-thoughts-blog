@@ -288,7 +288,7 @@
 </polygon>
 <text x="7.112" y="3.048" size="1.27" layer="121" font="vector" ratio="16">Strobe</text>
 <text x="2.286" y="13.462" size="1.27" layer="121" font="vector" ratio="16">R0.2</text>
-<text x="7.112" y="1.397" size="1.27" layer="121" font="vector" ratio="16">60.0Hz</text>
+<text x="7.112" y="1.397" size="1.27" layer="121" font="vector" ratio="16">50.0Hz</text>
 <text x="10.668" y="4.699" size="0.8128" layer="121" font="vector" ratio="25">C1</text>
 <text x="16.002" y="14.224" size="0.8128" layer="121" font="vector" ratio="25">C2</text>
 <text x="7.366" y="14.224" size="0.8128" layer="121" font="vector" ratio="25">C3</text>
