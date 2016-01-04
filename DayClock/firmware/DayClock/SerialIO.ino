@@ -40,7 +40,9 @@ void readCommand()
             tmSet.Second = 10 * (cmd[21] - '0') + cmd[22] - '0';
             tSet = makeTime(tmSet);		 //convert to time_t
             // Correct for DST
-            if (isDST(tSet)) tSet -= 3600;       // subtract an hour
+            if (isDST(month(tSet), day(tSet), weekday(tSet), hour(tSet))) {
+              tSet -= 3600;       // subtract an hour
+            }
             setTime(tSet);			 //set the system time
             RTC.set(tSet);		         //set the rtc            
             Serial.println("RTC set!");
@@ -79,7 +81,7 @@ void printTime(time_t t)
     Serial.print(' ');
     Serial.print(year(t));
     Serial.print(' ');
-    if (isDST(t)) Serial.print("DST");
+    if (isDST(month(t), day(t), weekday(t), hour(t))) Serial.print("DST");
     Serial.println();
 }
 

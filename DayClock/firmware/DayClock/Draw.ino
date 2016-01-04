@@ -6,62 +6,62 @@ void drawChar(int d, int c) {
 
 void drawMonth(int month) {
   switch (month) {
-    case JAN :
+    case Jan :
       drawChar(2, LETTER_J);
       drawChar(1, LETTER_A);
       drawChar(0, LETTER_N);
       break;
-    case FEB :
+    case Feb :
       drawChar(2, LETTER_F);
       drawChar(1, LETTER_E);
       drawChar(0, LETTER_B);
       break;
-    case MAR :
+    case Mar :
       drawChar(2, LETTER_M);
       drawChar(1, LETTER_A);
       drawChar(0, LETTER_R);
       break;
-    case APR :
+    case Apr :
       drawChar(2, LETTER_A);
       drawChar(1, LETTER_P);
       drawChar(0, LETTER_R);
       break;
-    case MAY :
+    case May :
       drawChar(2, LETTER_M);
       drawChar(1, LETTER_A);
       drawChar(0, LETTER_Y);
       break;
-    case JUN :
+    case Jun :
       drawChar(2, LETTER_J);
       drawChar(1, LETTER_U);
       drawChar(0, LETTER_N);
       break;
-    case JUL :
+    case Jul :
       drawChar(2, LETTER_J);
       drawChar(1, LETTER_U);
       drawChar(0, LETTER_L);
       break;
-    case AUG :
+    case Aug :
       drawChar(2, LETTER_A);
       drawChar(1, LETTER_U);
       drawChar(0, LETTER_G);
       break;
-    case SEP :
+    case Sep :
       drawChar(2, LETTER_S);
       drawChar(1, LETTER_E);
       drawChar(0, LETTER_P);
       break;
-    case OCTO :
+    case Oct :
       drawChar(2, LETTER_O);
       drawChar(1, LETTER_C);
       drawChar(0, LETTER_T);
       break;
-    case NOV :
+    case Nov :
       drawChar(2, LETTER_N);
       drawChar(1, LETTER_O);
       drawChar(0, LETTER_V);
       break;
-    case DECE :
+    case Dec :
       drawChar(2, LETTER_D);
       drawChar(1, LETTER_E);
       drawChar(0, LETTER_C);
@@ -84,42 +84,46 @@ void drawDate(int date) {
 
 void drawDay(int day) {
   
-  switch (day-1) {
-    case MON :
+  switch (day) {
+    case Sun :
+      drawChar(0, LETTER_N);
+      drawChar(1, LETTER_U);
+      drawChar(2, LETTER_S);
+      break;
+    case Mon :
       drawChar(0, LETTER_N);
       drawChar(1, LETTER_O);
       drawChar(2, LETTER_M);
       break;
-    case TUE :
+    case Tue :
       drawChar(0, LETTER_E);
       drawChar(1, LETTER_U);
       drawChar(2, LETTER_T);
       break;
-    case WED :
+    case Wed :
       drawChar(0, LETTER_D);
       drawChar(1, LETTER_E);
       drawChar(2, LETTER_W);
       break;
-    case THU :
+    case Thu :
       drawChar(0, LETTER_U);
       drawChar(1, LETTER_H);
       drawChar(2, LETTER_T);
       break;
-    case FRI :
+    case Fri :
       drawChar(0, LETTER_I);
       drawChar(1, LETTER_R);
       drawChar(2, LETTER_F);
       break;
-    case SAT :
+    case Sat :
       drawChar(0, LETTER_T);
       drawChar(1, LETTER_A);
       drawChar(2, LETTER_S);
       break;
-    case SUN :
-      drawChar(0, LETTER_N);
-      drawChar(1, LETTER_U);
-      drawChar(2, LETTER_S);
-      break;
+    default :
+      drawChar(2, LETTER_E);
+      drawChar(1, LETTER_R);
+      drawChar(0, LETTER_R);
   }
   
 }

@@ -2,6 +2,7 @@
 #include <Time.h>
 #include <Wire.h>
 #include <LedControl.h>
+#include "datehelp.h"
 #include "chars.h"
 
 //MCP79412RTC clock;
@@ -53,7 +54,9 @@ int lastSec = -1;
 void loop() {
   time_t time = now();
 
-  if (isDST(time)) time += 3600; // add one hour
+  if (isDST(month(time), day(time), weekday(time), hour(time))) {
+    time += 3600; // add one hour
+  }
 
   int h = hour(time);
   int m = minute(time);
