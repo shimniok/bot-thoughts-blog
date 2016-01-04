@@ -1,15 +1,6 @@
 
 #define MAXROW 8      // maximum number of LED rows
 
-enum days { SUN=0, MON, TUE, WED, THU, FRI, SAT };
-
-enum months { JAN=1, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCTO, NOV, DECE };
-
-enum letters { LETTER_A=13, LETTER_B, LETTER_C, LETTER_D, LETTER_E, LETTER_F, LETTER_G,
-  LETTER_H, LETTER_I, LETTER_J, LETTER_L, LETTER_M, LETTER_N, LETTER_O, LETTER_P, 
-  LETTER_R, LETTER_S, LETTER_T, LETTER_U, LETTER_V, LETTER_W, LETTER_Y,
-  LETTER_COLON, LETTER_BLANK };
-
 byte font[37*MAXROW] = {
                           B00001110, // 0
                           B00011111,
@@ -209,14 +200,14 @@ byte font[37*MAXROW] = {
                           B00111111,
                           B01111111,
 
-                          B00111111, // J
+                          B00000111, // J
+                          B00001111,
+                          B00000011,
+                          B00000011,
+                          B00000011,
+                          B01100011,
                           B01111111,
-                          B00000011,
-                          B00000011,
-                          B01000011,
-                          B01100111,
-                          B01111110,
-                          B00111100,
+                          B00111110,
 
                           B00100000, // L
                           B01100000,
