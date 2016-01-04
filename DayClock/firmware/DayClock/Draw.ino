@@ -1,3 +1,8 @@
+void drawChar(int d, int c) {
+  for (int row=0; row < MAXROW; row++) {
+    lc.setRow(d, row, font[c*MAXROW+row]);
+  }
+}
 
 void drawMonth(int month) {
   switch (month) {

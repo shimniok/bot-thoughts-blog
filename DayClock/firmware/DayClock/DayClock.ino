@@ -13,13 +13,6 @@ boolean dst = false;
 /* we always wait a bit between updates of the display */
 unsigned long delaytime=100;
 
-void drawChar(int d, int c) {
-  for (int row=0; row < MAXROW; row++) {
-    lc.setRow(d, row, font[c*MAXROW+row]);
-  }
-}
-
-
 void setup() {
   int devices=lc.getDeviceCount(); 
   //we have to init all devices in a loop
